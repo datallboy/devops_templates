@@ -1,0 +1,7 @@
+proxmox_api_url = "https://0.0.0.0:8006/api2/json"
+proxmox_api_token_id = "packer@pve!packer"
+proxmox_api_token_secret = "secret_from_proxmox_goes_here"
+proxmox_skip_tls_verify = "true"
+proxmox_node = "pve"
+proxmox_network_adapter_bridge = "vmbr0"
+proxmox_storage = "local"
