@@ -1,1 +1,6 @@
 credentials-prod.pkr.hcl
+credentials-prod.auto.tfvars
+.terraform
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
