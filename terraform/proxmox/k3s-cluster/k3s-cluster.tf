@@ -86,7 +86,7 @@ resource "proxmox_vm_qemu" "k3s-cluster" {
     os_type = "cloud-init"
 
     # (Optional) IP Address and Gateway
-    ipconfig0 = "ip=10.100.20.${count.index + 10}/24,gw=10.100.20.1"
+    ipconfig0 = "ip=10.100.20.${count.index + 11}/24,gw=10.100.20.1"
     
     # (Optional) Default User
     ciuser = var.cloudinit_username
