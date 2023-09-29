@@ -1,0 +1,12 @@
+---
+- name: Fix DNS and Interface status
+  hosts: k3s_cluster
+  tasks: 
+  - name: Replace /etc/resolv.conf since cloud-init won't
+    become: true
+    copy:
+      src: ./resolv.conf
+      dest: /etc/resolv.conf
+  - name: Bring up MetalLB interface
+    become: true
+    ansible.builtin.shell: sudo ip link set dev ens19 up
