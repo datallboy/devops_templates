@@ -39,12 +39,27 @@ variable "vm_memory" {
     default = 4096
 }
 
-variable "vm_network_bridge" {
+variable "vm_network_management_bridge" {
     default = "vmbr1"
+    description = "Management network for K3s cluster. This is where KubeVIP IP address will reside."
 }
 
-variable "vm_network_tag" {
+variable "vm_network_management_tag" {
     default = 20
+}
+
+variable "vm_network_metallb_bridge" {
+    default = "vmbr1"
+    description = "Services / MetalLB network for K3s cluster. This is where service load balancers are deployed."
+}
+
+variable "vm_network_metallb_tag" {
+    default = 21
+}
+
+variable "nameserver" {
+    type = string
+    default = "10.100.10.2"
 }
 
 variable "clone" {
@@ -75,18 +90,28 @@ resource "proxmox_vm_qemu" "k3s-cluster" {
     # VM Memory Settings
     memory = var.vm_memory
 
-    # VM Network Settings
+    # VM Management Network Settings
     network {
-        bridge = var.vm_network_bridge
+        bridge = var.vm_network_management_bridge
         model  = "virtio"
-        tag = var.vm_network_tag
+        tag = var.vm_network_management_tag
     }
+
+    # VM Service / MetalLB Network Settings
+    network {
+        bridge = var.vm_network_metallb_bridge
+        model  = "virtio"
+        tag = var.vm_network_metallb_bridge
+    }
+
+    nameserver = var.nameserver
 
     # VM Cloud-Init Settings
     os_type = "cloud-init"
 
     # (Optional) IP Address and Gateway
     ipconfig0 = "ip=10.100.20.${count.index + 11}/24,gw=10.100.20.1"
+    ipconfig1 = ""
     
     # (Optional) Default User
     ciuser = var.cloudinit_username
