@@ -1,0 +1,18 @@
+---
+- name: Install Requirements for Longhorn
+  hosts: node
+  tasks: 
+  - name: Install open-iscsi, nfs-common, & curl
+    become: true
+    ansible.builtin.apt:
+      pkg: 
+      - open-iscsi
+      - nfs-common
+      - curl
+
+  - name: Enable and start open-iscsi
+    become: true
+    ansible.builtin.systemd_service:
+      name: iscsid
+      enabled: true
+      state: started

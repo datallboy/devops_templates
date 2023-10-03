@@ -4,3 +4,4 @@ credentials-prod.auto.tfvars
 .terraform.lock.hcl
 terraform.tfstate
 terraform.tfstate.backup
+secret.yml
