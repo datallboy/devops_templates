@@ -5,4 +5,4 @@ metadata:
   namespace: metallb-system
 spec:
   interfaces:
-  - eth1
+  - ens19
