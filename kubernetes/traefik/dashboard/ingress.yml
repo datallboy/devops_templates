@@ -17,5 +17,5 @@ spec:
       services:
         - name: api@internal
           kind: TraefikService
-# tls:
-#  secretName: k3s.datallboy.lan.techhaven.io
+  tls:
+    secretName: k3s-datallboy-lan-techhaven-io-tls

@@ -1,0 +1,15 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: k3s-datallboy-lan-techhaven-io
+  namespace: default
+spec:
+  secretName: k3s-datallboy-lan-techhaven-io-staging-tls
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+  commonName: "*.k3s.datallboy.lan.techhaven.io"
+  dnsNames:
+  - "k3s.datallboy.lan.techhaven.io"
+  - "*.k3s.datallboy.lan.techhaven.io"
